@@ -41,5 +41,6 @@
   },
   "dependencies": {
     "jest": "^27.5.1"
-  }
+  },
+  "main": "webpack.config.js"
 }
