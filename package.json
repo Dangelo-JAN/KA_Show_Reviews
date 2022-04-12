@@ -40,6 +40,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
     "jest": "^27.5.1"
   },
   "main": "webpack.config.js"

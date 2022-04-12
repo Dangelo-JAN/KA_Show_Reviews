@@ -89,3 +89,8 @@ footer {
   max-width: 80px;
   background-color: aqua;
 }
+
+/* Popup Style */
+.hide {
+  display: none;
+}
