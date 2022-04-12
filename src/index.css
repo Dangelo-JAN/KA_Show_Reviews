@@ -19,6 +19,10 @@ body {
   display: flex;
 }
 
+.column {
+  flex-direction: column;
+}
+
 header {
   justify-content: center;
 }
@@ -41,4 +45,10 @@ header div {
 footer {
   border-top: 2px solid black;
   padding: 15px 25px;
+}
+
+.card-thumbnail {
+  height: 80px;
+  width: 80px;
+  background-color: aqua;
 }
