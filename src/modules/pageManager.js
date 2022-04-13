@@ -33,6 +33,7 @@ export default class PageManager {
   addCard = (showData) => {
     const show = document.createElement('div');
     show.classList.add('show', 'container', 'column');
+    show.id = showData.id;
     show.innerHTML = `<img class="card-thumbnail" src="${showData.image.medium}" alt="#">
     <div class="primary-info container">
       <span>${showData.name}</span>
@@ -40,14 +41,34 @@ export default class PageManager {
         <div class="like"></div>
         <span>0 Likes</span>
       </div>
-    </div>
-    <button type="button">Comments</button>
-    <button type="button">Reservations</button>`;
+    </div>`
+    // <button type="button" class="comment">Comments</button>
+    // <button type="button">Reservations</button>;
+    //comment button
+    const commentButton = document.createElement('button');
+    commentButton.type = 'button';
+    commentButton.textContent = 'Comment';
+    commentButton.addEventListener('click', (e) => {
+      console.log('I have been clicked');
+      const tvMaze = new TVMazeAPI;
+      tvMaze.getShowForPopup(e.parentElement.id);
+    })
+    // Reservation Button
+    const reservationButton = document.createElement('button');
+    reservationButton.type = 'button';
+    reservationButton.textContent = 'Reservations';
+    show.appendChild(commentButton);
+    show.appendChild(reservationButton);
     this.gv.showList.appendChild(show);
   }
 
   getShows = async () => {
     const tvMaze = new TVMazeAPI;
     tvMaze.getAllShowObjects();
+  }
+
+  generatePopup = (showData) => {
+    console.log(this.gv.popupTitle.innerHTML)
+    this.gv.popupTitle = showData.name;
   }
 }

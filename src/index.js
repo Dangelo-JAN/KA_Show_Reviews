@@ -4,4 +4,4 @@ import PageManager from './modules/pageManager';
 
 const pageManager = new PageManager;
 pageManager.getShows();
-pageManager.addCard();
+// pageManager.addCard();

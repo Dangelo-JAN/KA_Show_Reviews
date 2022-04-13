@@ -6,7 +6,7 @@ export default class TVMazeAPI {
   allShowNames = [{ id: '83' }, { id: '143' }, { id: '82' }, { id: '123' }, { id: '130' }, { id: '66' }];
   allShowObjects = [];
 
-  getShow = async (showID) => {
+  getShowForCards = async (showID) => {
     const pgmanager = new PageManager;
     const response = await fetch(this.APISource + showID);
     const value = await response.json();
@@ -14,10 +14,18 @@ export default class TVMazeAPI {
     pgmanager.addCard(showData);
   }
 
+  getShowForPopup = async (showID) => {
+    const pgmanager = new PageManager;
+    const response = await fetch(this.APISource + showID);
+    const value = await response.json();
+    const showData = await value;
+    pgmanager.generatePopup(showData);
+  }
+
   getAllShowObjects = async () => {
     const arrayOfShows = [];
     await this.allShowNames.forEach((showName) => {
-      this.getShow(showName.id);
+      this.getShowForCards(showName.id);
     });
     return arrayOfShows;
   }
