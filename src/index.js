@@ -1,12 +1,7 @@
 import './index.css';
-import TVMazeAPI from './modules/TVMazeAPI';
-const simpsonsData = async () => {
-  const data = await TVMazeAPI.getSimpsons();
-  const show = await data[0];
-  return show.show.image.medium;
-}
+// import TVMazeAPI from './modules/TVMazeAPI';
+import PageManager from './modules/pageManager';
 
-const test = simpsonsData();
-const firstImage = document.querySelector('.card-thumbnail');
-
-test.then(value => firstImage.src = `${value}`);
+const pageManager = new PageManager;
+pageManager.getShows();
+pageManager.addCard();
