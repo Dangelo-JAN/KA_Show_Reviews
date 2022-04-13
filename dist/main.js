@@ -126,7 +126,17 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n\n\n//# sourceURL=webpack://ka_show_reviews/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _modules_TVMazeAPI__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./modules/TVMazeAPI */ \"./src/modules/TVMazeAPI.js\");\n\n\nconst simpsonsData = async () => {\n  const data = await _modules_TVMazeAPI__WEBPACK_IMPORTED_MODULE_1__[\"default\"].getSimpsons();\n  const show = await data[0];\n  return show.show.image.medium;\n}\n\nconst test = simpsonsData();\nconst firstImage = document.querySelector('.card-thumbnail');\n\ntest.then(value => firstImage.src = `${value}`);\n\n//# sourceURL=webpack://ka_show_reviews/./src/index.js?");
+
+/***/ }),
+
+/***/ "./src/modules/TVMazeAPI.js":
+/*!**********************************!*\
+  !*** ./src/modules/TVMazeAPI.js ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ TVMazeAPI)\n/* harmony export */ });\nclass TVMazeAPI {\n  static APISource = 'https://api.tvmaze.com/search/shows?q=simpsons';\n\n  static getSimpsons = async () => {\n    const response = await fetch(this.APISource);\n    const values = await response.json();\n    return values;\n  }\n}\n\n//# sourceURL=webpack://ka_show_reviews/./src/modules/TVMazeAPI.js?");
 
 /***/ }),
 
