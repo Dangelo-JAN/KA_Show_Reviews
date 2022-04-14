@@ -2,6 +2,7 @@ import GlobalVariables from './global';
 
 const commentsAPI_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj';
 const commentList = document.getElementById('comment-list');
+const likes = document.getElementsByClassName('like');
 const vg = new GlobalVariables();
 
 const createDiv = (commentArr) => {
@@ -13,6 +14,12 @@ const createDiv = (commentArr) => {
     commentList.innerHTML += commentContainer;
   });
 };
+
+const createLikes = (showID, counterLikes) => {
+  likes.innerHTML = `
+    <span>${counterLikes.like}</span>
+  `
+}
 // Comments
 const getComments = async (showID) => {
   const response = await fetch(commentsAPI_URL + `/comments?item_id=${showID}`);
@@ -38,4 +45,29 @@ const loadComments = async (showID) => {
   });
 };
 
-export { addComments, loadComments };
+// Likes methods
+const getLikes = async () => {
+  const response = await fetch(commentsAPI_URL + `/likes`);
+  const likes = await response.json();
+  return likes;
+};
+
+const addLikes = async (data) => {
+  let response;
+  console.log(data);
+  response = await fetch(commentsAPI_URL + `/likes`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+};
+
+const loadLikes = async () => {
+  await getLikes().then((likes) => {
+    createLikes();
+  });
+};
+
+export { addComments, loadComments, addLikes, getLikes };
