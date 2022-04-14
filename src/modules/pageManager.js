@@ -18,15 +18,24 @@ export default class PageManager {
         <span>0 Likes</span>
       </div>
     </div>`;
-    // <button type="button" class="comment">Comments</button>
-    // <button type="button">Reservations</button>;
+
     // comment button
     const commentButton = document.createElement('button');
     commentButton.type = 'button';
     commentButton.textContent = 'Comment';
     commentButton.addEventListener('click', (e) => {
       const thisShow = showData;
+
+      // checking for resource of the popup
+      this.gv.popupImage.src = thisShow.image.original;
       this.gv.popupTitle.textContent = thisShow.name;
+      this.gv.showDetails1.textContent = `genre: ${thisShow.genres.join()}`;
+      this.gv.showDetails2.textContent = thisShow.premiered;
+      this.gv.showDetails3.textContent = thisShow.status;
+      this.gv.showDetails4.textContent = thisShow.language;
+      
+
+
       console.log(thisShow);
       const tvMaze = new TVMazeAPI();
       tvMaze.getShowForPopup(e.parentElement.id);
