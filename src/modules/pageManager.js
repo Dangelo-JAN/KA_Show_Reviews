@@ -33,7 +33,7 @@ export default class PageManager {
       this.gv.showDetails2.textContent = thisShow.premiered;
       this.gv.showDetails3.textContent = thisShow.status;
       this.gv.showDetails4.textContent = thisShow.language;
-      
+
 
 
       console.log(thisShow);

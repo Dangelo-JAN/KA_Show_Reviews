@@ -4,21 +4,21 @@ const commentsAPI_URL = 'https://us-central1-involvement-api.cloudfunctions.net/
 const commentList = document.getElementById('comment-list');
 const vg = new GlobalVariables();
 
-const createDiv = (comment) => {
+const createDiv = (commentArr) => {
   commentList.innerHTML = '';
-  const sortedComments = comment.sort((a, b) => b.comment - a.comment);
-  sortedComments.forEach((comment) => {
+  commentArr.forEach((comment) => {
     const commentContainer = `
-      <li class="score-text">${comment.user}: ${comment.comment}</li>
+      <li class="comment">${comment.creation_date} ${comment.username}: ${comment.comment}</li>
     `;
     commentList.innerHTML += commentContainer;
   });
 };
 // Comments
 const getComments = async () => {
-  const response = await fetch(commentsAPI_URL);
+  const response = await fetch(commentsAPI_URL + '/comments?item_id=GoT');
   const comments = await response.json();
-  return comments.result;
+  console.log(comments);
+  return comments;
 };
 
 const addComments = async () => {
@@ -37,8 +37,8 @@ const addComments = async () => {
   return status;
 };
 
-const loadComments = () => {
-  getComments().then((comments) => {
+const loadComments = async () => {
+  await getComments().then((comments) => {
     createDiv(comments);
   });
 };

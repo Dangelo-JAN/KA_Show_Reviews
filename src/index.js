@@ -8,6 +8,7 @@ const pageManager = new PageManager();
 const appManager = async () => {
   await pageManager.getShows();
   await pageManager.paintToHomePage();
+  await loadComments();
 };
 
 appManager();
@@ -17,11 +18,9 @@ appManager();
 //////////////////////
 const form = document.getElementById('comment-form');
 
-loadComments();
-
 form.addEventListener('submit', (e) => {
   e.preventDefault();
-  addComments();
+  // addComments();
   loadComments();
   form.reset();
 });
