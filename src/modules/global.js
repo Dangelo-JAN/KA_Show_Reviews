@@ -22,4 +22,6 @@ export default class GlobalVariables {
   commentField = document.querySelector('.comment-details');
 
   submitButton = document.getElementById('submit');
+
+  commentForm = document.getElementById('comment-form');
 }

@@ -14,31 +14,26 @@ const createDiv = (commentArr) => {
   });
 };
 // Comments
-const getComments = async () => {
-  const response = await fetch(commentsAPI_URL + '/comments?item_id=GoT');
+const getComments = async (showID) => {
+  const response = await fetch(commentsAPI_URL + `/comments?item_id=${showID}`);
   const comments = await response.json();
-  console.log(comments);
   return comments;
 };
 
-const addComments = async () => {
-  const response = fetch(commentsAPI_URL, {
+const addComments = async (showID, data) => {
+  let response;
+  console.log(data);
+  response = await fetch(commentsAPI_URL + `/comments?item_id=${showID}`, {
     method: 'POST',
     headers: {
-      'Content-type': 'application/json',
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      user: vg.inputField.value,
-      comment: vg.commentField.value,
-    }),
+    body: JSON.stringify(data),
   });
-
-  const status = await response.json();
-  return status;
 };
 
-const loadComments = async () => {
-  await getComments().then((comments) => {
+const loadComments = async (showID) => {
+  await getComments(showID).then((comments) => {
     createDiv(comments);
   });
 };
