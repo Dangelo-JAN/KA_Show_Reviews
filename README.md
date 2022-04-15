@@ -35,6 +35,9 @@ This project requires a text editor like VSCode
 ### Run tests
 After following the install steps above, you may run the tests by running npm run test in the terminal
 
+To run the test in your enviroment run the following commands in the project's root directory using the terminal:
+
+npm test
 
 ## Authors
 
