@@ -47,9 +47,8 @@ Aaron Keegan
 
 👤 **Author2**
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@Dangelo-JAN](https://github.com/Dangelo-JAN)
+- LinkedIn: [@Dangelo-JAN](https://www.linkedin.com/in/soluciones-empresariales-dangelo-arrivillaga/)
 
 ## 🤝 Contributing
 
