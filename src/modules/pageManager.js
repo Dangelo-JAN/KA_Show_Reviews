@@ -1,6 +1,8 @@
 import TVMazeAPI from './TVMazeAPI.js';
 import GlobalVariables from './global.js';
-import { addComments, getLikes, loadComments, addLikes } from './involvementAPI';
+import {
+  addComments, getLikes, loadComments, addLikes,
+} from './involvementAPI.js';
 
 export default class PageManager {
   showObjects = [];
@@ -13,7 +15,7 @@ export default class PageManager {
   }
 
   createLike = async (showData, Like) => {
-    if (likes.item_id == showData.id.toString()) {
+    if (likes.item_id === showData.id.toString()) {
       totalLikes = likes.likes;
     }
   }
@@ -58,7 +60,7 @@ export default class PageManager {
       counter += 1;
       await addLikes(data);
       e.target.parentElement.children[1].innerHTML = `${counter} likes`
-    })
+    });
     // const showDetails = document.createElement('div');
     // showDetails.classList.add('primary-info', 'container');
     // const showTitle = document.createElement('span');
@@ -84,8 +86,8 @@ export default class PageManager {
       this.gv.showDetails3.textContent = thisShow.status;
       this.gv.showDetails4.textContent = thisShow.language;
       // Empty the comments and replace with comments for the show
-      // remove any listeners on the popup button & replace it with a new listener that adds comments
-      // to the show
+      // remove any listeners on the popup button & replace it with a new listener that 
+      // adds comments to the show
 
       const popupContent = document.getElementById('popup-container');
       const oldForm = document.getElementById('comment-form');
@@ -101,7 +103,7 @@ export default class PageManager {
         const data = {
           item_id: `${showData.id}`,
           username: `${e.target.children[0].value}`,
-          comment: `${e.target.children[1].value}`
+          comment: `${e.target.children[1].value}`,
         };
         await addComments(showData.id, data);
         await loadComments(showData.id);
@@ -120,14 +122,14 @@ export default class PageManager {
     show.appendChild(reservationButton);
     this.gv.showList.appendChild(show);
     console.log(totalLikes);
-    return totalLikes
+    return totalLikes;
   }
 
   getShows = async () => {
     const tvMaze = new TVMazeAPI();
     const totalLikes = [];
-    const likeArr = await getLikes().then(likes => {
-      likes.forEach(like => totalLikes.push(like));
+    await getLikes().then((likes) => {
+      likes.forEach((like) => totalLikes.push(like));
     });
     this.likeObjects = await totalLikes;
     this.showObjects = await tvMaze.getAllShowObjects();
@@ -141,10 +143,9 @@ export default class PageManager {
     this.showObjects.forEach((show) => {
       this.addCard(show, this.likeObjects);
     });
-    let allshows = document.querySelectorAll('.show');
-    let showCounter = document.getElementById('shows-link');
+    const allshows = document.querySelectorAll('.show');
+    const showCounter = document.getElementById('shows-link');
     showCounter.innerHTML = `Shows (${allshows.length})`;
-    console.log(allshows.length);
     return allshows.length;
   }
 }

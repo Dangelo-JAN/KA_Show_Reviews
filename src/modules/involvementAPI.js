@@ -1,6 +1,6 @@
 import GlobalVariables from './global';
 
-const commentsAPI_URL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj';
+const likeAPIURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj/likes'
 const commentList = document.getElementById('comment-list');
 const likes = document.getElementsByClassName('like');
 const vg = new GlobalVariables();
@@ -25,7 +25,7 @@ const createLikes = (showID, counterLikes) => {
 }
 // Comments
 const getComments = async (showID) => {
-  const response = await fetch(commentsAPI_URL + `/comments?item_id=${showID}`);
+  const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj/comments?item_id=${showID}`);
   const comments = await response.json();
   return comments;
 };
@@ -33,7 +33,7 @@ const getComments = async (showID) => {
 const addComments = async (showID, data) => {
   let response;
   console.log(data);
-  response = await fetch(commentsAPI_URL + `/comments?item_id=${showID}`, {
+  response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj/comments?item_id=${showID}`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const loadComments = async (showID) => {
 
 // Likes methods
 const getLikes = async () => {
-  const response = await fetch(commentsAPI_URL + `/likes`);
+  const response = await fetch(likeAPIURL);
   const likes = await response.json();
   return likes;
 };
@@ -58,7 +58,7 @@ const getLikes = async () => {
 const addLikes = async (data) => {
   let response;
   console.log(data);
-  response = await fetch(commentsAPI_URL + `/likes`, {
+  response = await fetch(likeAPIURL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -73,4 +73,6 @@ const loadLikes = async () => {
   });
 };
 
-export { addComments, loadComments, addLikes, getLikes };
+export {
+  addComments, loadComments, addLikes, getLikes
+};
