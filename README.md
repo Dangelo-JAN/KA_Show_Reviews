@@ -12,7 +12,7 @@
 
 ## Live Demo (if available)
 
-Not currently available
+https://dangelo-jan.github.io/KA_Show_Reviews/
 
 
 ## Getting Started
