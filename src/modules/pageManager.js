@@ -1,17 +1,43 @@
 import TVMazeAPI from './TVMazeAPI.js';
 import GlobalVariables from './global.js';
-import { addComments, loadComments } from './involvementAPI';
+import {
+  addComments, getLikes, loadComments, addLikes,
+} from './involvementAPI.js';
 
 export default class PageManager {
   showObjects = [];
 
+  likeObjects = [];
+
   gv = new GlobalVariables();
 
-  refreshComments = (showID) => {
+  // createLike = async (showData, Like) => {
+  //   if (likes.item_id === showData.id.toString()) {
+  //     totalLikes = likes.likes;
+  //   }
+  // }
 
+  togglePopup = () => {
+    this.gv.header.classList.toggle('hide');
+    this.gv.showSection.classList.toggle('hide');
+    this.gv.footer.classList.toggle('hide');
+    this.gv.popupSection.classList.toggle('hide');
   }
 
-  addCard = (showData) => {
+  setCloseListener = () => {
+    const closebutton = document.getElementById('close');
+    closebutton.addEventListener('click', () => {
+      this.togglePopup();
+    });
+  }
+
+  addCard = async (showData, likeObjects) => {
+    let totalLikes;
+    likeObjects.forEach((likes) => {
+      if (likes.item_id === showData.id.toString()) {
+        totalLikes = likes.likes;
+      }
+    });
     const show = document.createElement('div');
     show.classList.add('show', 'container', 'column');
     show.id = showData.id;
@@ -20,9 +46,25 @@ export default class PageManager {
       <span>${showData.name}</span>
       <div class="likes container column">
         <div class="like"></div>
-        <span>0 Likes</span>
+        <span>${totalLikes} likes</span>
       </div>
     </div>`;
+    let counter = totalLikes;
+    show.children[1].children[1].children[0].addEventListener('click', async (e) => {
+      const thisShow = showData;
+      const data = { item_id: `${thisShow.id}` };
+      counter += 1;
+      await addLikes(data);
+      e.target.parentElement.children[1].innerHTML = `${counter} likes`;
+    });
+    // const showDetails = document.createElement('div');
+    // showDetails.classList.add('primary-info', 'container');
+    // const showTitle = document.createElement('span');
+    // showTitle.textContent = `${showData.name}`;
+    // showDetails.appendChild(showTitle);
+    // const likeContainer = document.createElement('div');
+    // likeContainer.classList.add('likes', 'container', 'column');
+    // const likeButton = document.createE
 
     // comment button
     const commentButton = document.createElement('button');
@@ -40,8 +82,8 @@ export default class PageManager {
       this.gv.showDetails3.textContent = thisShow.status;
       this.gv.showDetails4.textContent = thisShow.language;
       // Empty the comments and replace with comments for the show
-      // remove any listeners on the popup button & replace it with a new listener that adds comments
-      // to the show
+      // remove any listeners on the popup button & replace it with a new listener that
+      // adds comments to the show
 
       const popupContent = document.getElementById('popup-container');
       const oldForm = document.getElementById('comment-form');
@@ -54,14 +96,10 @@ export default class PageManager {
 
       newForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log(`I belong to ${showData.name}`);
-        console.log(`My show ID is ${showData.id}`);
-        console.log(`Submitting username  ${e.target.children[0].value}`);
-        console.log(`Submitting comment  ${e.target.children[1].value}`);
         const data = {
           item_id: `${showData.id}`,
           username: `${e.target.children[0].value}`,
-          comment: `${e.target.children[1].value}`
+          comment: `${e.target.children[1].value}`,
         };
         await addComments(showData.id, data);
         await loadComments(showData.id);
@@ -69,6 +107,8 @@ export default class PageManager {
         e.target.children[1].value = '';
       });
       popupContent.appendChild(newForm);
+      this.togglePopup();
+      // popupSection.classList.toggle('visible');
     });
     // Reservation Button
     const reservationButton = document.createElement('button');
@@ -76,25 +116,31 @@ export default class PageManager {
     reservationButton.textContent = 'Reservations';
     show.appendChild(commentButton);
     show.appendChild(reservationButton);
-    console.log(this.gv.showList);
     this.gv.showList.appendChild(show);
+    return totalLikes;
   }
 
   getShows = async () => {
     const tvMaze = new TVMazeAPI();
+    const totalLikes = [];
+    await getLikes().then((likes) => {
+      likes.forEach((like) => totalLikes.push(like));
+    });
+    this.likeObjects = await totalLikes;
     this.showObjects = await tvMaze.getAllShowObjects();
-    console.log(this.showObjects);
   }
 
   generatePopup = (showData) => {
-    console.log(this.gv.popupTitle.innerHTML);
     this.gv.popupTitle = showData.name;
   }
 
   paintToHomePage = () => {
-    console.log(this.showObjects);
     this.showObjects.forEach((show) => {
-      this.addCard(show);
+      this.addCard(show, this.likeObjects);
     });
+    const allshows = document.querySelectorAll('.show');
+    const showCounter = document.getElementById('shows-link');
+    showCounter.innerHTML = `Shows (${allshows.length})`;
+    return allshows.length;
   }
 }

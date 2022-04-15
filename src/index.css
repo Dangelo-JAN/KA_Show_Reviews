@@ -61,6 +61,7 @@ li {
   height: 25px;
   width: 25px;
   background-image: url('../img/favorite_border_black_24dp.svg');
+  cursor: pointer;
 }
 
 header {
@@ -95,14 +96,20 @@ footer {
 }
 
 /* Popup Style */
-.hide {
-  display: none;
-}
 
 .popup-sec {
   margin: 1em;
   text-align: center;
   border: solid 2px;
+}
+
+.visible {
+  z-index: 100;
+  position: absolute;
+  top: 0;
+  width: 96vw;
+  height: 130vh;
+  background-color: white;
 }
 
 .main-contaier {
@@ -196,4 +203,8 @@ footer {
   font-size: 2em;
   margin-left: 2.5em;
   margin-bottom: 2em;
+}
+
+.hide {
+  display: none !important;
 }

@@ -24,4 +24,12 @@ export default class GlobalVariables {
   submitButton = document.getElementById('submit');
 
   commentForm = document.getElementById('comment-form');
+
+  popupSection = document.querySelector('.popup-sec');
+
+  showSection = document.getElementById('show-list');
+
+  header = document.getElementById('header');
+
+  footer = document.getElementById('footer');
 }
