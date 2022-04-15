@@ -1,7 +1,7 @@
 const likeAPIURL = 'https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/GEEEq0hutMWJ97Wdtxcj/likes';
-const commentList = document.getElementById('comment-list');
 
 const createDiv = (commentArr) => {
+  const commentList = document.getElementById('comment-list');
   const counter = commentArr.length;
   const commentText = document.getElementById('comments');
   commentText.innerHTML = `Comments (${counter})`;
@@ -12,6 +12,7 @@ const createDiv = (commentArr) => {
     `;
     commentList.innerHTML += commentContainer;
   });
+  return commentArr.length;
 };
 
 // Comments
@@ -55,5 +56,5 @@ const addLikes = async (data) => {
 };
 
 export {
-  addComments, loadComments, addLikes, getLikes,
+  addComments, loadComments, addLikes, getLikes, createDiv,
 };

@@ -4,7 +4,7 @@
   "description": "![](https://img.shields.io/badge/Microverse-blueviolet)",
   "private": true,
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "jwatch": "jest --watch",
     "watch": "webpack --watch",
     "start": "webpack serve --open",
@@ -23,13 +23,19 @@
   },
   "homepage": "https://github.com/Dangelo-JAN/KA_Show_Reviews#readme",
   "devDependencies": {
+    "@babel/preset-env": "^7.16.11",
+    "babel": "^6.23.0",
     "babel-eslint": "^10.1.0",
+    "babel-jest": "^27.5.1",
+    "babel-polyfill": "^6.26.0",
     "css-loader": "^6.7.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.26.0",
     "hint": "^6.1.11",
     "html-webpack-plugin": "^5.5.0",
+    "jest": "^27.5.1",
+    "jest-babel": "^1.0.1",
     "style-loader": "^3.3.1",
     "stylelint": "^13.13.1",
     "stylelint-config-standard": "^21.0.0",
@@ -40,8 +46,7 @@
     "webpack-dev-server": "^4.8.1"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.1.1",
-    "jest": "^27.5.1"
+    "@fortawesome/fontawesome-svg-core": "^6.1.1"
   },
   "main": "webpack.config.js"
 }

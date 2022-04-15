@@ -11,12 +11,6 @@ export default class PageManager {
 
   gv = new GlobalVariables();
 
-  // createLike = async (showData, Like) => {
-  //   if (likes.item_id === showData.id.toString()) {
-  //     totalLikes = likes.likes;
-  //   }
-  // }
-
   togglePopup = () => {
     this.gv.header.classList.toggle('hide');
     this.gv.showSection.classList.toggle('hide');
@@ -57,14 +51,6 @@ export default class PageManager {
       await addLikes(data);
       e.target.parentElement.children[1].innerHTML = `${counter} likes`;
     });
-    // const showDetails = document.createElement('div');
-    // showDetails.classList.add('primary-info', 'container');
-    // const showTitle = document.createElement('span');
-    // showTitle.textContent = `${showData.name}`;
-    // showDetails.appendChild(showTitle);
-    // const likeContainer = document.createElement('div');
-    // likeContainer.classList.add('likes', 'container', 'column');
-    // const likeButton = document.createE
 
     // comment button
     const commentButton = document.createElement('button');
@@ -108,7 +94,6 @@ export default class PageManager {
       });
       popupContent.appendChild(newForm);
       this.togglePopup();
-      // popupSection.classList.toggle('visible');
     });
     // Reservation Button
     const reservationButton = document.createElement('button');
