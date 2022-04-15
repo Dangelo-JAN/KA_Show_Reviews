@@ -1,50 +1,49 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# KA_Show_Reviews
 
-> Description the project.
+> This website features the use of TVMazeAPI (to display major TV shows) and Involvement API (to keep track of comments and likes). The site allows a user to click on various TV shows and be greeted with a popup on some of the show details. We also allow users to leave likes and comments on the videos. Explore the page and have fun!
 
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- HTML, CSS, Javascript
+- Webpack
 
 ## Live Demo (if available)
 
-[Live Demo Link](https://livedemo.com)
+Not currently available
 
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
+To get started please copy the following into your terminal inside your directory of choice: git@github.com:Dangelo-JAN/KA_Show_Reviews.git
+Next open the project in your favorite text editor and run the following commands in the project's root directory:
+
+npm install
+npm run build
+npm start
+
+The final command will open the website live in your default browser. Have fun exploring the page!
 
 
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
+This project requires a text editor like VSCode
 
-### Setup
-
-### Install
-
-### Usage
 
 ### Run tests
-
-### Deployment
-
+After following the install steps above, you may run the tests by running npm run test in the terminal
 
 
 ## Authors
 
 👤 **Author1**
+Aaron Keegan
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- GitHub: [@AKeeganDev](https://github.com/AKeeganDev)
+- Twitter: [@AkeeganDev](https://twitter.com/AkeeganDev)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/AKeeganDev)
 
 👤 **Author2**
 
@@ -65,8 +64,7 @@ Give a ⭐️ if you like this project!
 ## Acknowledgments
 
 - Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- Thank you Microverse for their curriculum on APIs, Modules, and async JS code. That was a major inspiration for this project
 
 ## 📝 License
 
