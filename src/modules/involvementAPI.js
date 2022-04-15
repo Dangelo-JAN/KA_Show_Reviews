@@ -6,6 +6,9 @@ const likes = document.getElementsByClassName('like');
 const vg = new GlobalVariables();
 
 const createDiv = (commentArr) => {
+  const counter = commentArr.length;
+  const commentText = document.getElementById('comments');
+  commentText.innerHTML = `Comments (${counter})`;
   commentList.innerHTML = '';
   commentArr.forEach((comment) => {
     const commentContainer = `
@@ -49,7 +52,6 @@ const loadComments = async (showID) => {
 const getLikes = async () => {
   const response = await fetch(commentsAPI_URL + `/likes`);
   const likes = await response.json();
-  console.log(likes);
   return likes;
 };
 

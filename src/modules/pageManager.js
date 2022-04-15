@@ -18,6 +18,20 @@ export default class PageManager {
     }
   }
 
+  togglePopup = () => {
+    this.gv.header.classList.toggle('hide');
+    this.gv.showSection.classList.toggle('hide');
+    this.gv.footer.classList.toggle('hide');
+    this.gv.popupSection.classList.toggle('hide');
+  }
+
+  setCloseListener = () => {
+    const closebutton = document.getElementById('close');
+    closebutton.addEventListener('click', () => {
+      this.togglePopup()
+    });
+  }
+
   addCard = async (showData, likeObjects) => {
     let totalLikes;
     const stuff = likeObjects.forEach(likes => {
@@ -95,6 +109,8 @@ export default class PageManager {
         e.target.children[1].value = '';
       });
       popupContent.appendChild(newForm);
+      this.togglePopup();
+      // popupSection.classList.toggle('visible');
     });
     // Reservation Button
     const reservationButton = document.createElement('button');
@@ -126,6 +142,8 @@ export default class PageManager {
       this.addCard(show, this.likeObjects);
     });
     let allshows = document.querySelectorAll('.show');
+    let showCounter = document.getElementById('shows-link');
+    showCounter.innerHTML = `Shows (${allshows.length})`;
     console.log(allshows.length);
     return allshows.length;
   }

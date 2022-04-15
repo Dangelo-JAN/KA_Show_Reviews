@@ -11,14 +11,14 @@
 <script defer src="/KA_Show_Reviews/main.js"></script></head>
 
 <body>
-  <header class="container">
+  <header id="header" class="container">
     <div class="container">
       <span class="container logo">
         <span>KA Show Reivews</span>
       </span>
       <ul class="container header-links">
         <li>
-          <a id="shows-link" href="#">Shows (6)</a>
+          <a id="shows-link" href="#">Shows</a>
         </li>
         <li>
           <a href="#">Movies</a>
@@ -43,7 +43,7 @@
       <button type="button">Reservations</button>
     </div> -->
   </section>
-  <section class="popup-sec">
+  <section class="popup-sec hide">
     <div class="container column main-contaier" id="popup-container">
       <button type="button" class="close" id="close"></button>
       <img src="#" alt="#" class="popup-image" />
@@ -58,7 +58,7 @@
           <span class="info-4">Power: 100kf</span>
         </div>
       </div>
-      <span class="comments-container">Comments</span>
+      <span id="comments" class="comments-container">Comments</span>
       <ul id="comment-list">
         <li class="comment">date one and comment one</li>
         <li class="comment">date two and comment two</li>
@@ -71,7 +71,7 @@
       </form>
     </div>
   </section>
-  <footer class="container">
+  <footer id="footer" class="container">
     <p>Created by KA Show Reviews, inc. under CC license</p>
   </footer>
 </body>
