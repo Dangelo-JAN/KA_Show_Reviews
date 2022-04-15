@@ -6,19 +6,16 @@ import {
 
 export default class PageManager {
   showObjects = [];
+
   likeObjects = [];
 
   gv = new GlobalVariables();
 
-  refreshComments = (showID) => {
-
-  }
-
-  createLike = async (showData, Like) => {
-    if (likes.item_id === showData.id.toString()) {
-      totalLikes = likes.likes;
-    }
-  }
+  // createLike = async (showData, Like) => {
+  //   if (likes.item_id === showData.id.toString()) {
+  //     totalLikes = likes.likes;
+  //   }
+  // }
 
   togglePopup = () => {
     this.gv.header.classList.toggle('hide');
@@ -30,15 +27,14 @@ export default class PageManager {
   setCloseListener = () => {
     const closebutton = document.getElementById('close');
     closebutton.addEventListener('click', () => {
-      this.togglePopup()
+      this.togglePopup();
     });
   }
 
   addCard = async (showData, likeObjects) => {
     let totalLikes;
-    const stuff = likeObjects.forEach(likes => {
+    likeObjects.forEach((likes) => {
       if (likes.item_id === showData.id.toString()) {
-        console.log('match' + likes.item_id);
         totalLikes = likes.likes;
       }
     });
@@ -59,7 +55,7 @@ export default class PageManager {
       const data = { item_id: `${thisShow.id}` };
       counter += 1;
       await addLikes(data);
-      e.target.parentElement.children[1].innerHTML = `${counter} likes`
+      e.target.parentElement.children[1].innerHTML = `${counter} likes`;
     });
     // const showDetails = document.createElement('div');
     // showDetails.classList.add('primary-info', 'container');
@@ -86,7 +82,7 @@ export default class PageManager {
       this.gv.showDetails3.textContent = thisShow.status;
       this.gv.showDetails4.textContent = thisShow.language;
       // Empty the comments and replace with comments for the show
-      // remove any listeners on the popup button & replace it with a new listener that 
+      // remove any listeners on the popup button & replace it with a new listener that
       // adds comments to the show
 
       const popupContent = document.getElementById('popup-container');
@@ -121,7 +117,6 @@ export default class PageManager {
     show.appendChild(commentButton);
     show.appendChild(reservationButton);
     this.gv.showList.appendChild(show);
-    console.log(totalLikes);
     return totalLikes;
   }
 
