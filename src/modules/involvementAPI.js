@@ -49,6 +49,7 @@ const loadComments = async (showID) => {
 const getLikes = async () => {
   const response = await fetch(commentsAPI_URL + `/likes`);
   const likes = await response.json();
+  console.log(likes);
   return likes;
 };
 

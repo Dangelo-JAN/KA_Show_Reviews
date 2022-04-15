@@ -1,9 +1,10 @@
 import TVMazeAPI from './TVMazeAPI.js';
 import GlobalVariables from './global.js';
-import { addComments, loadComments } from './involvementAPI';
+import { addComments, getLikes, loadComments, addLikes } from './involvementAPI';
 
 export default class PageManager {
   showObjects = [];
+  likeObjects = [];
 
   gv = new GlobalVariables();
 
@@ -11,7 +12,20 @@ export default class PageManager {
 
   }
 
-  addCard = (showData) => {
+  createLike = async (showData, Like) => {
+    if (likes.item_id == showData.id.toString()) {
+      totalLikes = likes.likes;
+    }
+  }
+
+  addCard = async (showData, likeObjects) => {
+    let totalLikes;
+    const stuff = likeObjects.forEach(likes => {
+      if (likes.item_id === showData.id.toString()) {
+        console.log('match' + likes.item_id);
+        totalLikes = likes.likes;
+      }
+    });
     const show = document.createElement('div');
     show.classList.add('show', 'container', 'column');
     show.id = showData.id;
@@ -20,9 +34,25 @@ export default class PageManager {
       <span>${showData.name}</span>
       <div class="likes container column">
         <div class="like"></div>
-        <span>0 Likes</span>
+        <span>${totalLikes} likes</span>
       </div>
     </div>`;
+    let counter = totalLikes;
+    show.children[1].children[1].children[0].addEventListener('click', async (e) => {
+      const thisShow = showData;
+      const data = { item_id: `${thisShow.id}` };
+      counter += 1;
+      await addLikes(data);
+      e.target.parentElement.children[1].innerHTML = `${counter} likes`
+    })
+    // const showDetails = document.createElement('div');
+    // showDetails.classList.add('primary-info', 'container');
+    // const showTitle = document.createElement('span');
+    // showTitle.textContent = `${showData.name}`;
+    // showDetails.appendChild(showTitle);
+    // const likeContainer = document.createElement('div');
+    // likeContainer.classList.add('likes', 'container', 'column');
+    // const likeButton = document.createE
 
     // comment button
     const commentButton = document.createElement('button');
@@ -54,10 +84,6 @@ export default class PageManager {
 
       newForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        console.log(`I belong to ${showData.name}`);
-        console.log(`My show ID is ${showData.id}`);
-        console.log(`Submitting username  ${e.target.children[0].value}`);
-        console.log(`Submitting comment  ${e.target.children[1].value}`);
         const data = {
           item_id: `${showData.id}`,
           username: `${e.target.children[0].value}`,
@@ -76,25 +102,31 @@ export default class PageManager {
     reservationButton.textContent = 'Reservations';
     show.appendChild(commentButton);
     show.appendChild(reservationButton);
-    console.log(this.gv.showList);
     this.gv.showList.appendChild(show);
+    console.log(totalLikes);
+    return totalLikes
   }
 
   getShows = async () => {
     const tvMaze = new TVMazeAPI();
+    const totalLikes = [];
+    const likeArr = await getLikes().then(likes => {
+      likes.forEach(like => totalLikes.push(like));
+    });
+    this.likeObjects = await totalLikes;
     this.showObjects = await tvMaze.getAllShowObjects();
-    console.log(this.showObjects);
   }
 
   generatePopup = (showData) => {
-    console.log(this.gv.popupTitle.innerHTML);
     this.gv.popupTitle = showData.name;
   }
 
   paintToHomePage = () => {
-    console.log(this.showObjects);
     this.showObjects.forEach((show) => {
-      this.addCard(show);
+      this.addCard(show, this.likeObjects);
     });
+    let allshows = document.querySelectorAll('.show');
+    console.log(allshows.length);
+    return allshows.length;
   }
 }
