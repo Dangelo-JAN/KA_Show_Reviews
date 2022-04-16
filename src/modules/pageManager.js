@@ -67,9 +67,6 @@ export default class PageManager {
       this.gv.showDetails2.textContent = thisShow.premiered;
       this.gv.showDetails3.textContent = thisShow.status;
       this.gv.showDetails4.textContent = thisShow.language;
-      // Empty the comments and replace with comments for the show
-      // remove any listeners on the popup button & replace it with a new listener that
-      // adds comments to the show
 
       const popupContent = document.getElementById('popup-container');
       const oldForm = document.getElementById('comment-form');
