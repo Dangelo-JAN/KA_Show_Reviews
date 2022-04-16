@@ -65,6 +65,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
+- TVMAZE by it's API: APISource = https://api.tvmaze.com/shows/
 - Hat tip to anyone whose code was used
 - Thank you Microverse for their curriculum on APIs, Modules, and async JS code. That was a major inspiration for this project
 
