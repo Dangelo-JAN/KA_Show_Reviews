@@ -13,7 +13,7 @@
 ## Live Demo (if available)
 
 https://dangelo-jan.github.io/KA_Show_Reviews/
-
+click this link for a brief tour of the site and an explanation of a code snippet (https://drive.google.com/file/d/16nJAAvjmc7n28zLtD-a9ChkINAqdnSFw/view?usp=sharing)
 
 ## Getting Started
 
