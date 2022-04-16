@@ -92,7 +92,8 @@ footer {
   min-height: 80px;
   min-width: 80px;
   max-width: 80px;
-  background-color: aqua;
+  border: solid #069981;
+  border-radius: 0.5em;
 }
 
 /* Popup Style */
@@ -207,4 +208,12 @@ footer {
 
 .hide {
   display: none !important;
+}
+
+.show button {
+  background-color: #f7f2f2;
+}
+
+.show button:hover {
+  background-color: #069981;
 }
